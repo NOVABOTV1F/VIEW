@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+@import "@fontsource/manrope/800.css";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-pink: #c97f8f;
+  --color-pink-dark: #b36a7a;
+  --color-pink-light: #f7e9ec;
+  --color-ink: #2e2a2c;
+  --color-muted: #8a7e82;
+  --color-line: #f0e2e5;
+  --color-ok: #5fbf7a;
+  --color-bad: #e2685e;
+  --font-sans: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --radius-card: 1.375rem;
+  --radius-control: 1rem;
+  --shadow-card: 0 8px 24px rgb(201 127 143 / 0.14);
+  --shadow-pop: 0 20px 50px rgb(46 42 44 / 0.25);
+  --container-studio: 29rem;
+  --text-display: 1.625rem;
+  --text-display--line-height: 1.15;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--color-pink-light);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-pink);
+    outline-offset: 2px;
+  }
+}
+
+.fold {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms ease;
+}
+
+.fold.open {
+  grid-template-rows: 1fr;
+}
+
+.fold > .fold-inner {
+  overflow: hidden;
+}
+
+@keyframes pulse-rec {
+  0% {
+    box-shadow: 0 0 0 0 rgb(226 104 94 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgb(226 104 94 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(226 104 94 / 0);
+  }
+}
+
+.rec-pulse {
+  animation: pulse-rec 1.4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fold,
+  .rec-pulse {
+    transition: none;
+    animation: none;
+  }
+}
